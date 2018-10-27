@@ -12,6 +12,8 @@ import CoreLocation
 class MapVC: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var pullUpView: UIView!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
@@ -37,11 +39,45 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         doubleTap.numberOfTapsRequired = 2
         doubleTap.delegate = self
         mapView.addGestureRecognizer(doubleTap)
+        
+    }
+    
+    func addSwipe(){
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(animateViewDown))
+        swipe.direction = .down
+        pullUpView.addGestureRecognizer(swipe)
+    }
+    
+    func animateViewUp(){
+        heightConstraint.constant = 300
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+        
+    }
+    
+    @objc func animateViewDown(){
+        heightConstraint.constant = 1
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
     }
     
 }
 
 extension MapVC: MKMapViewDelegate{
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation{
+            return nil
+        }
+        
+        
+        let pinAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "droppablePin")
+        
+        pinAnnotation.pinTintColor = #colorLiteral(red: 0.9094039798, green: 0.7658978105, blue: 0.2633045018, alpha: 1)
+        pinAnnotation.animatesDrop = true
+        return pinAnnotation
+    }
     func centerMapOnUserLocation(){
         guard let coordinate = locationManager.location?.coordinate else {return}
         let cordinateRegion = MKCoordinateRegion(center: coordinate,latitudinalMeters: regionRadius * 2, longitudinalMeters: regionRadius * 2)
@@ -50,7 +86,8 @@ extension MapVC: MKMapViewDelegate{
     
     @objc func dropPin(sender: UITapGestureRecognizer){
         removePin()
-        
+        animateViewUp()
+        addSwipe()
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         

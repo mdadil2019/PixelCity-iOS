@@ -42,7 +42,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jmm-fe-JSR">
-                                <rect key="frame" x="308" y="587" width="67" height="60"/>
+                                <rect key="frame" x="308" y="586" width="67" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="I8R-1L-oPa"/>
                                     <constraint firstAttribute="width" constant="67" id="Ytc-sU-MEf"/>
@@ -52,23 +52,35 @@
                                     <action selector="centerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gS1-c4-9Fb"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJD-nV-JZR">
+                                <rect key="frame" x="0.0" y="666" width="375" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="v9O-Sp-8zg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Jmm-fe-JSR" secondAttribute="bottom" constant="20" id="DxV-MF-6HW"/>
+                            <constraint firstItem="13P-NF-fpa" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4Xk-AL-GOM"/>
+                            <constraint firstItem="Jmm-fe-JSR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="B2h-ZF-0Uh"/>
+                            <constraint firstItem="dJD-nV-JZR" firstAttribute="top" secondItem="Jmm-fe-JSR" secondAttribute="bottom" constant="20" id="EZo-ON-mCC"/>
                             <constraint firstItem="13P-NF-fpa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="RPT-qJ-HgM"/>
                             <constraint firstItem="13P-NF-fpa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YPJ-bz-Yxu"/>
                             <constraint firstItem="gAJ-Zb-ZYe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Z4W-Am-XZy"/>
-                            <constraint firstItem="Jmm-fe-JSR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bp0-Y6-sF2"/>
+                            <constraint firstAttribute="trailing" secondItem="dJD-nV-JZR" secondAttribute="trailing" id="eUy-lh-Uog"/>
+                            <constraint firstItem="dJD-nV-JZR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iOg-kk-h5C"/>
                             <constraint firstItem="gAJ-Zb-ZYe" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="pis-AX-3vW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="13P-NF-fpa" secondAttribute="bottom" id="qDA-O0-fZk"/>
                             <constraint firstItem="13P-NF-fpa" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="u5Y-oZ-JLC"/>
                             <constraint firstItem="gAJ-Zb-ZYe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ucy-Hq-023"/>
+                            <constraint firstItem="dJD-nV-JZR" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="z6o-gD-J0Q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="heightConstraint" destination="v9O-Sp-8zg" id="crB-9M-Us7"/>
                         <outlet property="mapView" destination="13P-NF-fpa" id="b25-cg-7Qa"/>
+                        <outlet property="pullUpView" destination="dJD-nV-JZR" id="zLW-NR-rL6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
